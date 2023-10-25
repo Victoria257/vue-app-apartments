@@ -2,16 +2,19 @@
   <div id="app">
     <h1>{{ title }}</h1>
     <MyButton @click="increment" outlined>Click me</MyButton>
+    <DerectivesTest />
   </div>
 </template>
 
 <script>
 import MyButton from "./components/MyButton";
+import DerectivesTest from "./components/DerectivesTest";
 
 export default {
   name: "App",
   components: {
     MyButton,
+    DerectivesTest,
   },
   data() {
     return {

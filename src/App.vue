@@ -2,19 +2,22 @@
   <div id="app">
     <h1>{{ title }}</h1>
     <MyButton @click="increment" outlined>Click me</MyButton>
-    <DerectivesTest />
+
+    <StarRating :rating="3"></StarRating>
   </div>
 </template>
 
 <script>
 import MyButton from "./components/MyButton";
-import DerectivesTest from "./components/DerectivesTest";
+
+import StarRating from "./components/StarRating";
 
 export default {
   name: "App",
   components: {
     MyButton,
-    DerectivesTest,
+
+    StarRating,
   },
   data() {
     return {

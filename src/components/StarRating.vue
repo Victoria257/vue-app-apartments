@@ -57,7 +57,7 @@ export default {
   display: inline-block;
   width: 16px;
   height: 16px;
-  margin: 0 3px;
+  margin: 0 5px;
   flex-shrink: 0;
   &--colored {
     background: url("/public/img/Star-orange.svg") center no-repeat;

@@ -4,12 +4,7 @@
     <MyButton @click="increment" outlined>Click me</MyButton>
 
     <StarRating :rating="3"></StarRating>
-    <ApartmentsItem
-      :description="apartment.description"
-      :price="apartment.price"
-      :rating="apartment.rating"
-      imgSrc="https://vn.com.ua/Media/files/filemanager/2019/October/%D0%90%D0%BF%D0%B0%D1%80%D1%82%D0%B0%D0%BC%D0%B5%D0%BD%D1%82%D1%8B.jpg"
-    />
+    <ApartmentsList :items="apartments" />
   </div>
 </template>
 
@@ -17,18 +12,20 @@
 import MyButton from "./components/MyButton";
 
 import StarRating from "./components/StarRating";
-import ApartmentsItem from "./components/apartment/ApartmentsItem.vue";
+import ApartmentsList from "./components/apartment/ApartmentsList.vue";
+import apartments from "./components/apartment/apartments";
 
 export default {
   name: "App",
   components: {
     MyButton,
     StarRating,
-    ApartmentsItem,
+    ApartmentsList,
   },
   data() {
     return {
       amountOfClicks: 0,
+      apartments,
       apartment: {
         id: 1,
         title: "Розкішні апартаменти",

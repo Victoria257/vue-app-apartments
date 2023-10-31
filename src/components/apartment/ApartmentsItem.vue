@@ -70,6 +70,7 @@ export default {
     transition: opacity 0.3s ease;
     height: 100%;
     padding: 20px;
+    text-align: start;
 
     cursor: pointer;
     &:hover {
@@ -78,14 +79,14 @@ export default {
   }
   &__description {
     color: #fff;
+    height: calc(1em * 1.1 * 4);
+    overflow: hidden;
     font-family: Montserrat Medium;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    letter-spacing: 1.7px;
     margin: 0;
-    text-align: start;
   }
   &__rating {
     margin: 20px 0 0 0;

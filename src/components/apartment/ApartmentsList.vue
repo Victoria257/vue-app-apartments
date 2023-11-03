@@ -9,6 +9,7 @@
         :price="apartment.price"
         :imgSrc="apartment.imgUrl"
       />
+      <!-- @click="handleItemClick"  це ми пишемо на строку вище, тобто вішаємо на <ApartmentsItem> -->
     </div>
   </ContainerMain>
 </template>
@@ -26,6 +27,11 @@ export default {
     items: {
       type: Array,
       default: () => [],
+    },
+  },
+  methods: {
+    handleItemClick() {
+      console.log("item click");
     },
   },
 };

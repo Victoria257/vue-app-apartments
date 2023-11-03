@@ -26,22 +26,6 @@ export default {
     return {
       amountOfClicks: 0,
       apartments,
-      apartment: {
-        id: 1,
-        title: "Розкішні апартаменти",
-        description:
-          "Розкішні апартаменти у скандинавському стилі з панорамним видом на річку та безкоштовним Wi-Fi.",
-        price: 1250,
-        rating: 4.6,
-        location: {
-          city: "Kyiv",
-        },
-        owner: {
-          name: "Viktoria",
-          phone: "+380631577013",
-          email: "vik25@i.ua",
-        },
-      },
     };
   },
   computed: {

@@ -1,5 +1,7 @@
 <template>
-  <div class="apartment-item">
+  <div class="apartment-item" @click="log(2, $event)">
+    <!-- @click="$emit('click')" ми маємо так прописувати якщо клік навішуємо
+    на <ApartmentsItem> в  ApartmentList.vue, тобто так ми передаємо інформацію що подія клік відбулась-->
     <div class="apartment-item__inner">
       <img :src="imgSrc" alt="" class="apartment-item__photo" />
       <div class="apartment-item__content">
@@ -10,6 +12,9 @@
         <p class="apartment-item__price">UAH {{ price }} за ніч</p>
       </div>
     </div>
+    <a href="http//facebook" @click.prevent.stop="handleClick">Facebook </a>
+    <!-- prevent для того щоб не переходило по посиланню , а тільки спрацьовувалп функція  handleClick-->
+    <!-- stop для того щоб зупинити споивання подій, тобто спрацює тільки  handleClick, а клік який ми повісили на всю карточку не спрацює -->
   </div>
 </template>
 
@@ -38,6 +43,16 @@ export default {
       default: "",
     },
   },
+  methods: {
+    log(index, event) {
+      console.log(index);
+      console.log(event);
+    },
+    handleClick() {
+      console.log("facebook clicked");
+    },
+  },
+  // emits: ["click"],  це потрібно якщо ми прописуємо  @click="$emit('click')"
 };
 </script>
 

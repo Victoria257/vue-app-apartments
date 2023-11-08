@@ -2,23 +2,18 @@
   <div id="app">
     <h1>{{ title }}</h1>
     <MyButton @click="increment" outlined>Click me</MyButton>
-
     <StarRating :rating="3"></StarRating>
-    <h2>{{ text }}</h2>
-    <CustomInput v-model="text" />
-    <CustomSelect :items="formattedItems" />
+    <ApartmentFilterForm @submit="logger" class="apartments-filter" />
     <ApartmentsList :items="apartments" />
   </div>
 </template>
 
 <script>
 import MyButton from "./components/MyButton";
-
 import StarRating from "./components/StarRating";
 import ApartmentsList from "./components/apartment/ApartmentsList.vue";
 import apartments from "./components/apartment/apartments";
-import CustomInput from "./components/shared/CustomInput.vue";
-import CustomSelect from "./components/shared/CustomSelect.vue";
+import ApartmentFilterForm from "./components/apartment/ApartmentFilterForm.vue";
 
 export default {
   name: "App",
@@ -26,33 +21,25 @@ export default {
     MyButton,
     StarRating,
     ApartmentsList,
-    CustomInput,
-    CustomSelect,
+    ApartmentFilterForm,
   },
   data() {
     return {
       amountOfClicks: 0,
       apartments,
-      text: "",
-      items: [
-        { value: "1", label: "name" },
-        { value: "2", label: "label" },
-        { value: "3", label: "salary" },
-      ],
-      selectedItem: "1",
     };
   },
   computed: {
     title() {
       return `Amount of clicks ${this.amountOfClicks}`;
     },
-    formattedItems() {
-      return this.items;
-    },
   },
   methods: {
     increment() {
       this.amountOfClicks += 1;
+    },
+    logger(value) {
+      console.log(value, "form value");
     },
   },
 };
@@ -66,5 +53,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.apartments-filter {
+  background-color: beige;
 }
 </style>

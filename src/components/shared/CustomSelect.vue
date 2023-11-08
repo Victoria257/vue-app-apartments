@@ -15,6 +15,11 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      selectedItem: "",
+    };
+  },
   computed: {
     formatedItems() {
       return this.items.map((item) => {
@@ -22,16 +27,12 @@ export default {
       });
     },
   },
-  data() {
-    return {
-      selectedItem: null,
-    };
-  },
-  created() {
-    if (!this.selectedItem && this.items.length > 0) {
-      this.selectedItem = this.items[0].value;
-    }
-  },
+
+  //   created() {
+  //     if (!this.selectedItem && this.items.length > 0) {
+  //       this.selectedItem = this.formatedItems[0].label;
+  //     }
+  //   },
 };
 </script>
 

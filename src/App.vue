@@ -3,8 +3,9 @@
     <h1>{{ title }}</h1>
     <MyButton @click="increment" outlined>Click me</MyButton>
     <StarRating :rating="3"></StarRating>
-    <ApartmentFilterForm @submit="logger" class="apartments-filter" />
-    <ApartmentsList :items="apartments" />
+    <ApartmentFilterForm @submit="filterApartment" class="apartments-filter" />
+    <p v-if="!filteredApartments.length">Нічого не знайдено</p>
+    <ApartmentsList v-else :items="filteredApartments" />
   </div>
 </template>
 
@@ -27,19 +28,53 @@ export default {
     return {
       amountOfClicks: 0,
       apartments,
+      shouldHandleFilterSubmit: true,
+      filters: {
+        city: "",
+        price: 0,
+      },
     };
   },
   computed: {
     title() {
       return `Amount of clicks ${this.amountOfClicks}`;
     },
+    filteredApartments() {
+      return this.filterByCityName(this.filterByPrice(this.apartments));
+    },
   },
   methods: {
     increment() {
       this.amountOfClicks += 1;
     },
-    logger(value) {
-      console.log(value, "form value");
+    filterApartment({ city, price }) {
+      if (this.shouldHandleFilterSubmit) {
+        this.filters.city = city;
+        this.filters.price = price;
+        console.log("city", city);
+        console.log("price", price);
+        console.log("this.filters.city", this.filters.city);
+        console.log("this.filters.price", this.filters.price);
+        this.shouldHandleFilterSubmit = false;
+      }
+    },
+
+    filterByCityName(apartments) {
+      if (!this.filters.city) {
+        console.log(this.filters.city);
+        return apartments;
+      }
+      return apartments.filter((apartment) => {
+        console.log(this.filters.city);
+        return apartment.location.city === this.filters.city;
+      });
+    },
+    filterByPrice(apartments) {
+      if (!this.filters.price) return apartments;
+      return apartments.filter((apartment) => {
+        console.log(this.filters.price);
+        return apartment.price >= this.filters.price;
+      });
     },
   },
 };

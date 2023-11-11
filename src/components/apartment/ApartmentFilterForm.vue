@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @submit.prevent="handleSubmit">
+  <form class="form" @submit.prevent.stop="handleSubmit">
     <CustomSelect :items="cities" v-model="city" class="custom-select" />
     <CustomInput placeholder="Ціна, від" v-model="price" class="form__input" />
     <SubmitButton class="form__submit" type="submit">
@@ -31,15 +31,17 @@ export default {
       return [
         { label: "Місто", value: "", selected: true },
         "Kyiv",
-        "Odessa",
+        "Odesa",
         "Poltava",
         "Kharkiv",
         "Dnipro",
         "Lviv",
-        "Chernihiv",
+        "Kherson",
+        "Mariupol",
       ];
     },
   },
+  props: ["filterData"],
   methods: {
     handleSubmit() {
       this.$emit("submit", {

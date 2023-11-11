@@ -57,6 +57,7 @@ export default {
 .form {
   display: flex;
   margin-bottom: 40px;
+
   &__select {
     margin-right: 10px;
   }

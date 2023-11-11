@@ -1,28 +1,40 @@
 <template>
   <div id="app">
-    <h1>{{ title }}</h1>
-    <MyButton @click="increment" outlined>Click me</MyButton>
-    <StarRating :rating="3"></StarRating>
-    <ApartmentFilterForm @submit="filterApartment" class="apartments-filter" />
-    <p v-if="!filteredApartments.length">Нічого не знайдено</p>
-    <ApartmentsList v-else :items="filteredApartments" />
+    <HeaderMain></HeaderMain>
+    <div class="content">
+      <!-- <MyButton @click="increment" outlined>Click me</MyButton>
+      <StarRating :rating="3"></StarRating> -->
+      <ApartmentFilterForm
+        @submit="filterApartment"
+        class="apartments-filter"
+      />
+      <div class="container">
+        <p v-if="!filteredApartments.length">Нічого не знайдено</p>
+        <ApartmentsList v-else :items="filteredApartments" />
+      </div>
+    </div>
+    <FooterMain />
   </div>
 </template>
 
 <script>
-import MyButton from "./components/MyButton";
-import StarRating from "./components/StarRating";
+// import MyButton from "./components/MyButton";
+// import StarRating from "./components/StarRating";
 import ApartmentsList from "./components/apartment/ApartmentsList.vue";
 import apartments from "./components/apartment/apartments";
 import ApartmentFilterForm from "./components/apartment/ApartmentFilterForm.vue";
+import FooterMain from "./components/Footer.vue";
+import HeaderMain from "./components/Header.vue";
 
 export default {
   name: "App",
   components: {
-    MyButton,
-    StarRating,
+    // MyButton,
+    // StarRating,
     ApartmentsList,
     ApartmentFilterForm,
+    FooterMain,
+    HeaderMain,
   },
   data() {
     return {
@@ -82,14 +94,21 @@ export default {
 
 <style>
 #app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 
+.content {
+  flex-grow: 1;
+  padding-top: 120px;
+}
+.container {
+  text-align: center;
+}
 .apartments-filter {
   background-color: beige;
 }

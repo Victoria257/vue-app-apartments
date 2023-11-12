@@ -10,9 +10,13 @@
           <StarRating :rating="rating" />
         </div>
         <p class="apartment-item__price">UAH {{ price }} за ніч</p>
+        <router-link
+          :to="{ name: 'apartmentInfo' }"
+          class="apartment-item__link"
+        ></router-link>
       </div>
     </div>
-    <a href="http//facebook" @click.prevent.stop="handleClick">Facebook </a>
+    <!-- <a href="http//facebook" @click.prevent.stop="handleClick">Facebook </a> -->
     <!-- prevent для того щоб не переходило по посиланню , а тільки спрацьовувалп функція  handleClick-->
     <!-- stop для того щоб зупинити споивання подій, тобто спрацює тільки  handleClick, а клік який ми повісили на всю карточку не спрацює -->
   </div>
@@ -115,6 +119,14 @@ export default {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+  }
+  &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

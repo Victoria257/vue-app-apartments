@@ -4,6 +4,7 @@
       <ApartmentsItem
         v-for="apartment in items"
         :key="apartment.id"
+        :id="apartment.id"
         :description="apartment.descr"
         :rating="apartment.rating"
         :price="apartment.price"

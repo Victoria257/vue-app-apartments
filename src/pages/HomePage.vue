@@ -10,8 +10,9 @@
 
 <script>
 import ApartmentsList from "../components/apartment/ApartmentsList.vue";
-import apartments from "../components/apartment/apartments";
+
 import ApartmentFilterForm from "../components/apartment/ApartmentFilterForm.vue";
+import { getApartmentsList } from "../services/apartments.service";
 
 export default {
   name: "App",
@@ -22,7 +23,7 @@ export default {
   data() {
     return {
       amountOfClicks: 0,
-      apartments,
+      apartments: [],
       shouldHandleFilterSubmit: true,
       filters: {
         city: "",
@@ -37,6 +38,16 @@ export default {
     filteredApartments() {
       return this.filterByCityName(this.filterByPrice(this.apartments));
     },
+  },
+
+  async created() {
+    try {
+      const response = await getApartmentsList();
+      this.apartments = response.data;
+      console.log("response.data", response.data);
+    } catch (error) {
+      console.error("error", error);
+    }
   },
   methods: {
     increment() {

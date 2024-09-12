@@ -73,7 +73,7 @@ export default {
 <style lang="scss" scoped>
 .list {
   margin-top: 117px;
-  background-color: red;
+  background-color: rgb(89, 0, 255);
   &__heading {
     margin-bottom: 17px;
     background-color: #e1efff;

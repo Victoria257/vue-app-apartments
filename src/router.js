@@ -2,6 +2,7 @@ import ApartmentInfo from "./pages/ApartmentInfo.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./pages/HomePage.vue";
 import ErrorPage from "./pages/ErrorPage.vue";
+import LoginPage from "./pages/Login.vue";
 
 const routes = [
   {
@@ -13,6 +14,12 @@ const routes = [
     path: "/",
     component: HomePage,
     name: "homePage",
+  },
+
+  {
+    path: "/login",
+    component: LoginPage,
+    name: "login-page",
   },
   {
     path: "/:pathMatch(.*)*",

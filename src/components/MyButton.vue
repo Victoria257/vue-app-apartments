@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-  background: red;
+  background: rgb(246, 115, 115);
   cursor: pointer;
   &--outlined {
     background: green;

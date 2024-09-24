@@ -3,6 +3,7 @@
     <input
       v-bind="$attrs"
       :value="modelValue"
+      @blur="blurHandler"
       @input="$emit('update:modelValue', $event.target.value)"
       class="custom-input"
       :class="!isValid && 'custom-input--error'"
@@ -21,13 +22,13 @@ export default {
       error: "",
     };
   },
+  inject: ["form"],
   inheritAttrs: false,
   props: {
-    // value: {
-    //   type: String,
-    //   default: "",
-    // },
-    modelValue: String,
+    modelValue: {
+      type: String,
+      default: "",
+    },
     errorMessage: {
       type: String,
       default: "",
@@ -39,17 +40,18 @@ export default {
   },
 
   watch: {
-    // value(value) {
-    //   this.validate(value);
-    //   console.log("value", value);
-    // },
     modelValue(newValue) {
       this.validate(newValue);
-      console.log("modelValue", newValue);
     },
   },
+  mounted() {
+    if (this.form) this.form.registerInput(this);
+  },
+  beforeUnmount() {
+    if (this.form) this.form.unRegisterInput(this);
+  },
   methods: {
-    validate(value) {
+    validate(value = this.modelValue) {
       this.isValid = this.rules.every((rule) => {
         const { hasPassed, message } = rule(value);
         if (!hasPassed) {
@@ -57,6 +59,12 @@ export default {
         }
         return hasPassed;
       });
+
+      return this.isValid;
+    },
+
+    reset() {
+      this.$emit("input", "");
     },
   },
 };
